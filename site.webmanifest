@@ -1,0 +1,17 @@
+{
+  "name": "Sky — Tejidos y Amigurumis en Crochet",
+  "short_name": "Sky",
+  "description": "Sky es un proyecto creativo de diseño en tejidos y amigurumi hecho en crochet: personajes, animales, peluches, llaveros y personalización de productos.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FDF9FA",
+  "theme_color": "#B65A74",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "recursos/media/global/sky_logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acceso Taller — Gestión de Colecciones | Sky</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#B65A74">
+  <link rel="icon" type="image/x-icon" href="../media/global/sky_favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body data-media-base="../media/">
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="../../index.html" class="brand">
+        <span class="brand-mark">
+          <picture>
+            <source srcset="../media/global/sky_logo.avif" type="image/avif">
+            <img src="../media/global/sky_logo.png" alt="Logo Sky" class="brand-logo">
+          </picture>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Sky</span>
+          <span class="brand-sub">Panel Taller (Boseto)</span>
+        </span>
+      </a>
+      <div class="nav-actions">
+        <a href="../../index.html#trabajos" class="btn btn-outline btn-sm">Ver sitio público</a>
+        <button type="button" class="btn btn-primary btn-sm" id="logoutBtn" style="display:none;">Cerrar sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Pantalla de Login -->
+    <section class="admin-login-wrap" id="loginView">
+      <div class="admin-login-card">
+        <span class="eyebrow">Acceso privado</span>
+        <h1>Taller Sky</h1>
+        <p style="font-size:0.92rem;color:var(--muted);">
+          Inicia sesión para gestionar las colecciones, descripciones y detalles visibles para tus clientes.
+        </p>
+
+        <div class="admin-hint">
+          <strong>Boseto de prueba:</strong><br>
+          Usuario: <code>sky</code> &middot; Contraseña: <code>sky2026</code>
+        </div>
+
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="loginUser">Usuario</label>
+            <input type="text" id="loginUser" required autocomplete="username" placeholder="sky">
+          </div>
+          <div class="form-group">
+            <label for="loginPass">Contraseña</label>
+            <input type="password" id="loginPass" required autocomplete="current-password" placeholder="•••••••">
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;margin-top:0.5rem;">
+            Ingresar al panel
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Panel de Gestión de Colecciones -->
+    <section class="admin-dashboard container" id="dashboardView" style="display:none;">
+      <div class="admin-topbar">
+        <div>
+          <span class="eyebrow">Gestión de Colecciones</span>
+          <h1 style="font-size:2.3rem;">Trabajos realizados en Sky</h1>
+          <p style="font-size:0.92rem;color:var(--muted);">
+            Boseto local preparado para conectar luego con Google Sheets. Los cambios que guardes aquí se reflejan de inmediato en la página principal.
+          </p>
+        </div>
+        <div style="display:flex;gap:0.65rem;flex-wrap:wrap;">
+          <button type="button" class="btn btn-outline btn-sm" id="resetDemoBtn">Restaurar ejemplo</button>
+          <a href="../../index.html#trabajos" class="btn btn-primary btn-sm">Ver cambios en la web</a>
+        </div>
+      </div>
+
+      <div class="admin-grid-layout">
+        <!-- Formulario Crear / Editar -->
+        <div class="admin-panel">
+          <h2 id="formTitle" style="font-size:1.6rem;margin-bottom:1rem;">Agregar nuevo trabajo</h2>
+          <form id="itemForm">
+            <input type="hidden" id="itemId">
+            <div class="form-group">
+              <label for="itemNombre">Nombre del trabajo *</label>
+              <input type="text" id="itemNombre" required placeholder="Ej. Conejita Bailarina">
+            </div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="itemCategoria">Categoría *</label>
+                <select id="itemCategoria">
+                  <option value="peluches">Peluches &amp; Animales</option>
+                  <option value="personajes">Personajes</option>
+                  <option value="llaveros">Llaveros &amp; Mini</option>
+                  <option value="personalizados">Personalizados</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="itemEtiqueta">Etiqueta</label>
+                <input type="text" id="itemEtiqueta" placeholder="Ej. Trabajo destacado">
+              </div>
+            </div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="itemTamano">Tamaño aprox.</label>
+                <input type="text" id="itemTamano" placeholder="Ej. 30 cm aprox.">
+              </div>
+              <div class="form-group">
+                <label for="itemTiempo">Tiempo de elaboración</label>
+                <input type="text" id="itemTiempo" placeholder="Ej. 5 a 7 días hábiles">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="itemMaterial">Materiales</label>
+              <input type="text" id="itemMaterial" placeholder="Ej. Algodón mercerizado e hilo suave">
+            </div>
+            <div class="form-group">
+              <label for="itemImagen">Imagen (ruta o URL)</label>
+              <input type="text" id="itemImagen" required placeholder="colecciones/conejita-bailarina-rosa.png">
+            </div>
+            <div class="form-group">
+              <label for="itemDescripcion">Descripción *</label>
+              <textarea id="itemDescripcion" rows="3" required placeholder="Describe los detalles del tejido, colores y ocasión ideal..."></textarea>
+            </div>
+            <div class="form-group" style="flex-direction:row;align-items:center;gap:0.6rem;">
+              <input type="checkbox" id="itemVisible" checked style="width:auto;">
+              <label for="itemVisible" style="margin:0;">Visible en la web pública</label>
+            </div>
+            <div style="display:flex;gap:0.6rem;">
+              <button type="submit" class="btn btn-primary" style="flex:1;">Guardar trabajo</button>
+              <button type="button" class="btn btn-outline" id="cancelEditBtn" style="display:none;">Cancelar</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Tabla de Colecciones -->
+        <div class="admin-panel">
+          <h2 style="font-size:1.6rem;margin-bottom:1rem;">Listado actual (<span id="itemsCount">0</span>)</h2>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Imagen</th>
+                  <th>Nombre y descripción</th>
+                  <th>Categoría</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="adminTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../js/colecciones-data.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>
